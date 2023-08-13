@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+  import Header from "../components/common/Header.vue";
+  import Saidbar from "../components/common/Saidbar.vue";
+  import Foolter from "../components/common/Foolter.vue"
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Header></Header>
+    <Saidbar></Saidbar>
+    <div class="p-4 sm:ml-64">
+      <div class="p-4 mt-14">
+    
+      </div>
+      <Foolter></Foolter>
+    </div>
+    
+
   </main>
 </template>
