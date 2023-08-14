@@ -1,26 +1,35 @@
-<script setup lang="js">
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const email = ref('');
-const password = ref('');
+const newPassword = ref('');
+const confirmPassword = ref('');
 
-function validateForm(event) {
-  if (!validateEmail(email.value)) {
-    alert('Please enter a valid email address ending with @gmail.com.');
-    event.preventDefault();
-  } else if (!validatePassword(password.value)) {
-    alert('Password must be at least 6 characters long.');
+function validateForm(event: Event) {
+  if (!emailIsValid(email.value)) {
+    alert('Please enter a valid email address.');
+    event.preventDefault(); 
+  } else if (!passwordsMatch(newPassword.value, confirmPassword.value)) {
+    alert('Please enter matching new passwords.');
+    event.preventDefault(); 
+  } else if (!isStrongPassword(newPassword.value)) {
+    alert('New password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.');
     event.preventDefault(); 
   }
 }
 
-function validateEmail(email) {
+function emailIsValid(email: string): boolean {
   const emailPattern = /^[^\s@]+@gmail\.com$/;
   return emailPattern.test(email);
 }
 
-function validatePassword(password) {
-  return password.length >= 8;
+function passwordsMatch(password: string, confirmPassword: string): boolean {
+  return password === confirmPassword;
+}
+
+function isStrongPassword(password: string): boolean {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{7,}$/;
+  return passwordPattern.test(password);
 }
 </script>
 
@@ -40,25 +49,23 @@ function validatePassword(password) {
         <form @submit="validateForm">
             <div class="login_form_container">
                 <div class="login_form">
-                    <h2>Login</h2>
+                    <h2>New Password</h2>
                     <div class="input_group">
                         <i class="fa fa-user"></i>
-                        <input type="text" required placeholder="Email" class="input_text" autocomplete="off"
-                            v-model="email" />
+                        <input type="text" required placeholder="Email" class="input_text" autocomplete="off" v-model="email"/>
                     </div>
                     <div class="input_group">
                         <i class="fa fa-unlock-alt"></i>
-                        <input type="password" required placeholder="Password" class="input_text" autocomplete="off"
-                            v-model="password" />
+                        <input type="password" required placeholder="New Password" class="input_text" autocomplete="off"  v-model="newPassword" />
+                    </div>
+                    <div class="input_group">
+                        <i class="fa fa-unlock-alt"></i>
+                        <input type="password" required placeholder="Confirm Password" class="input_text" autocomplete="off" v-model="confirmPassword"/>
                     </div>
                     <input type="submit" value="Login">
-                    <div class="fotter">
-                        <a href="http://localhost:5173/auth/forget">Forgot Password ?</a>
-                    </div>
                 </div>
             </div>
         </form>
-
     </body>
 </template>
 
@@ -142,8 +149,8 @@ body {
 
 
 h2 {
-    font-size: 50px;
-    font-weight: 600;
+    font-size: 40px;
+    font-weight: 400;
     text-align: center;
 }
 
