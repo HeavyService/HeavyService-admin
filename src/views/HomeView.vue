@@ -6,14 +6,17 @@
 </script>
 
 <template>
-  <ThemeSetter></ThemeSetter>
-  <Header></Header>
-  <Saidbar></Saidbar>
-  <div class="p-4 sm:ml-64">
-    <div class="p-4 mt-14">
-      <main>
-      </main>
+  <main>
+    <Header></Header>
+    <Saidbar></Saidbar>
+    <div class="p-4 sm:ml-64">
+      <div class="p-4 mt-14">
+    
+      </div>
       <Foolter></Foolter>
     </div>
-  </div>
+    
+
+  </main>
+  
 </template>

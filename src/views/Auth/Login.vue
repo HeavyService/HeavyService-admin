@@ -1,11 +1,7 @@
-<script setup lang = "js">
-$(".input_text").focus(function () {
-    $(this).prev('.fa').addclass('glowIcon')
-})
-$(".input_text").focusout(function () {
-    $(this).prev('.fa').removeclass('glowIcon')
-})
+<script setup lang="ts">
+
 </script>
+
 
 
 <template>
@@ -13,7 +9,7 @@ $(".input_text").focusout(function () {
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Animated Login From</title>
+        <title>Login</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="login.css" />
     </head>
@@ -30,18 +26,15 @@ $(".input_text").focusout(function () {
                     <i class="fa fa-unlock-alt"></i>
                     <input type="password" placeholder="Password" class="input_text" autocomplete="off" />
                 </div>
-                <div class="button_group" id="login_button">
-                    <a>Submit</a>
-                </div>
+                    <input type="submit" value="Login">
+                <!-- <div class="button_group" id="login_button">
+                     <a>Submit</a> 
+                </div> -->
                 <div class="fotter">
                     <a>Forgot Password ?</a>
-                    <a>SingUp</a>
                 </div>
             </div>
         </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="login.js"></script>
     </body>
 </template>
 
@@ -70,7 +63,7 @@ body {
     max-width: 400px;
     max-height: 470px;
     background: #040717;
-    border-radius: 50px 5px;
+    border-radius: 50px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,9 +105,8 @@ body {
 
 .login_form {
     position: absolute;
-    content: '';
     background-color: #0c1022;
-    border-radius: 50px 5px;
+    border-radius: 65px 50px;
     inset: 5px;
     padding: 50px 40px;
     z-index: 10;
@@ -122,8 +114,11 @@ body {
 
 }
 
+
+
+
 h2 {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 600;
     text-align: center;
 }
@@ -140,6 +135,7 @@ h2 {
     width: 95%;
     height: 30px;
     background: transparent;
+    border-bottom: none;
     border: none;
     outline: none;
     border-bottom: 1px solid #00ccff;
@@ -167,7 +163,7 @@ h2 {
     height: 40px;
     transition: 1s;
     margin-top: 70px;
-
+    
 
 }
 
@@ -175,7 +171,7 @@ h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    text-decoration: none;
+    text-decoration: #00ccff;
     z-index: 10;
     cursor: pointer;
     font-size: 22px;
@@ -205,4 +201,32 @@ h2 {
     text-shadow: 0 0 10px #00ccff;
 
 }
+
+input[type="submit"]{
+    color: #0c1022;
+    background: #00ccff;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 2px;
+    margin-top: 50px;
+    border-radius: 90px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 300px;
+    height: 40px;
+}
+
+input[type="submit"]:hover{
+    background: linear-gradient(90deg, #ee00ff,#00ccff);
+    opacity: 1;
+}
+
+input[type="submit"]:active{
+    background: linear-gradient(90deg, #00ccff, #ee00ff);
+    opacity: 0.75;
+}
+
+
+
 </style>
