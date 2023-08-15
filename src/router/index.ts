@@ -1,29 +1,62 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-// import Login from '@/views/Auth/Login.vue'/
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: "/",
+      component: ()=> import("../layouts/Layout.vue"),
+      redirect: "/dashboard",
+      children: [
+        {
+          path: "dashboard",
+          component: ()=>import("../views/dashboard/Dashboard.vue")
+        },
+        {
+          path: "category",
+          component: ()=>import("../views/category/Category.vue")
+        },
+        {
+          path: "user",
+          component: ()=>import("../views/user/User.vue")
+        },
+        {
+          path: "transport",
+          component: ()=>import("../views/transport/Transport.vue")
+        },
+        {
+          path: "instrument",
+          component: ()=>import("../views/instrument/Instrument.vue")
+        },
+        {
+          path: "comment/transport",
+          component: ()=>import("../views/comment/TransportComment.vue")
+        },
+        {
+          path: "comment/instrument",
+          component: ()=>import("../views/comment/InstrumentComment.vue")
+        }
+      ]
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
-    },
-    {
-      path: '/auth/login',
-      name: 'login',
-      component: () => import ('../views/Auth/Login.vue')
-    },
-    {
-      path: '/auth/forget',
-      name: 'forget',
-      component: () => import ('../views/Auth/ForgetPassword.vue')
+      path: "/auth",
+      component: ()=>import("../layouts/AuthLayout.vue"),
+      redirect: "/auth/login",
+      children: [
+        {
+          path: "login",
+          component: ()=>import("../views/auth/LoginView.vue")
+        },
+        {
+          path: "forget",
+          component: ()=>import("../views/auth/ForgetPassword.vue")
+        },
+        {
+          path:"verify",
+          component:()=>import("../views/auth/VerifyEmail.vue")
+        }
+      ]
     }
   ]
 })
