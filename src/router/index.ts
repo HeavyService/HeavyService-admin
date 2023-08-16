@@ -46,15 +46,15 @@ const router = createRouter({
       children: [
         {
           path: "login",
-          component: ()=>import("../views/auth/LoginView.vue")
+          component: ()=>import("../views/Auth/LoginView.vue")
         },
         {
           path: "forget",
-          component: ()=>import("../views/auth/ForgetPassword.vue")
+          component: ()=>import("../views/Auth/ForgetPassword.vue")
         },
         {
           path:"verify",
-          component:()=>import("../views/auth/VerifyEmail.vue")
+          component:()=>import("../views/Auth/VerifyEmail.vue")
         }
       ]
     }

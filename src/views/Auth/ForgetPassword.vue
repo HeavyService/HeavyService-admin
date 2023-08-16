@@ -49,6 +49,7 @@ import { ref } from 'vue';
   const confirmPassword = ref('');
   
   function validateForm(event: Event) {
+    debugger;
     if (!emailIsValid(email.value)) {
       alert('Please enter a valid Gmail address.');
       event.preventDefault();

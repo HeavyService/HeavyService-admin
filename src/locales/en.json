@@ -1,0 +1,12 @@
+{
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "transport": "Transport",
+    "instruments": "Instruments",
+    "category": "Category",
+    "comments": "Comments",
+
+    "en":"English",
+    "ru":"Russian",
+    "uz":"Uzbek"
+}

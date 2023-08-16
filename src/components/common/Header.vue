@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import ThemeSwitch from './ThemeSwitch.vue';
+    import LanguageSwitcher from './LanguageSwitcher.vue';
 </script>
 
 
@@ -28,6 +29,7 @@
                 
                 <div class="flex items-center">
                     <ThemeSwitch></ThemeSwitch>
+                    <LanguageSwitcher></LanguageSwitcher>
                     <div class="flex items-center ml-3">
                         <div>
                             <button type="button"
