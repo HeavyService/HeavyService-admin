@@ -1,7 +1,6 @@
 <script setup  lang = "ts">
     import IconDashboard from '../icons/IconDashboard.vue'
     import IconUser from '../icons/IconUser.vue'
-    import IconCategory from '../icons/IconCategory.vue'
     import IconComment from '../icons/IconComment.vue'
     import IconInstrument from '../icons/IconInstrument.vue'
     import IconTransport from '../icons/IconTransport.vue'

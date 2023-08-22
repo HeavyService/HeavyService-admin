@@ -1,106 +1,104 @@
+<script lang="ts">
+import { defineComponent} from 'vue';
+    import IconCreate from '@/components/icons/interface/IconCreate.vue';
+    import UserSkeletonComponent from "@/components/users/UserSkeletonComponent.vue";
+    import { UserViewModel } from '@/viewmodels/UserViewModels';
+    import UserViewComponent from "@/components/users/UserViewComponent.vue";
+    import axios from '@/plugins/axios'
+    import { useI18n } from 'vue-i18n';
+    import IconHome from '@/components/icons/IconHome.vue';
+    
+
+
+export default defineComponent({
+    components:{
+    UserViewComponent, 
+    UserSkeletonComponent,
+    IconCreate,
+    IconHome
+},
+  methods:{
+    async getDataAsync(){
+      this.isLoaded = false;
+      var response = await axios.get<UserViewModel[]>("/api/users");
+      this.isLoaded=true;
+      this.userList = response.data;
+      console.log(this.userList);
+    }    
+  },
+  data() {
+    return {
+      userList: [] as UserViewModel[],
+      defaultSkeletons: 4 as Number,
+      isLoaded: false as Boolean
+    }
+  },
+  setup(){
+    const { t } = useI18n();
+  },
+  async mounted() {
+      await this.getDataAsync();
+  },
+});
+
+</script>
+
 <template>
+<nav class="flex" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <li class="inline-flex items-center">
+        <IconHome></IconHome>
+    </li>
+    <li aria-current="page">
+      <div class="flex items-center">
+        <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+        </svg>
+        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ $t("users") }}</span>
+      </div>
+    </li>
+  </ol>
+</nav>
 
-<div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-    <!-- <div class="flex items-center justify-between mb-4">
-        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Customers</h5>
-        <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-            View all
-        </a>
-   </div>
-   <div class="flow-root">
-        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Neil Sims
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            email@windster.com
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        $320
-                    </div>
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image">
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Bonnie Green
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            email@windster.com
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        $3467
-                    </div>
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Michael image">
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Michael Gough
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            email@windster.com
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        $67
-                    </div>
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image">
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Lana Byrd
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            email@windster.com
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        $367
-                    </div>
-                </div>
-            </li>
-            <li class="pt-3 pb-0 sm:pt-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="Thomas image">
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Thomes Lean
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            email@windster.com
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        $2367
-                    </div>
-                </div>
-            </li>
-        </ul>
-   </div> -->
-</div>
 
-    </template>
+    <!-- Begin: Transports Skeletons -->
+    <ul v-show="isLoaded === false">
+        <template v-for="element in defaultSkeletons">
+            <TransportSkeletonComponent class="mt-2 mb-3" />
+        </template>
+    </ul>
+    <!-- End: Transports Skeletons -->
+
+    <!-- Begin: Transports -->
+
+    <div class="flex w-100 justify-end">
+        <button type="button"
+            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            <div class="flex flex-wrap items-center">
+                <IconCreate />
+                <p class="mx-2">{{ $t("create") }}</p>
+            </div>
+        </button>
+    </div>
+      <ul v-show="isLoaded === true">
+        <template v-for="element in userList">
+            <UserViewComponent
+                :id="element.id"
+                :firstName="element.firstName"
+                :lastName="element.lastName"
+                :email = "element.email"
+                :createdAt="element.createdAt"
+                :updatedAt="element.updatedAt"
+                class="mt-2 mb-3"
+            />
+        </template>
+      </ul>
+    
+    <!-- End: Transports -->
+
+    <div id="div-gpt-ad-listing-sponsored-ad-first" class="baxter-container" data-testid="qa-advert-slot">
+      <div id="div-gpt-ad-listing-sponsored-ad-first-inner" class="baxter-inner baxter-1800337551">
+
+      </div>
+    </div>
+</template>

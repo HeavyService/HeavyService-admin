@@ -7,6 +7,7 @@ import { formatDate } from "@/helpers/DateHelper";
 import axios from '@/plugins/axios'
 import { defineComponent } from "vue";
 import IconLocation from "../icons/interface/IconLocation.vue";
+import IconPhone from "../icons/interface/IconPhone.vue";
 
 export default defineComponent({
   components: {
@@ -60,41 +61,43 @@ export default defineComponent({
     <div class="flex-none w-64">
       <img style="height: 100%; width: 100%; object-fit: cover;" class="rounded-lg" src="{{ imageFullPath }}" />
     </div>
+
     <div class="flex-auto p-4">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ name }}</h5>
       <p class="font-normal text-gray-700 dark:text-gray-400">{{ description }}</p>
+      <div class="flex flex-wrap items-center mt-5 mb-5">
+        <IconLocation></IconLocation>
+        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          District: {{ district }}
+        </p>
+        <IconLocation></IconLocation>
+        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          Region: {{ region }}
+        </p>
+        <IconLocation></IconLocation>
+        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          Address: {{ address }}
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center mt-5 mb-5">
+        <IconPhone></IconPhone>
+        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          Phone Number: {{ phoneNumber }}
+        </p>
+        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          Status:  {{ status }}
+        </p>
+        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          Priceper Hour:  {{ pricePerHour }}
+        </p>
+      </div>
       <div class="flex flex-wrap items-center mt-5 mb-5">
         <IconCalendar></IconCalendar>
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">{{ createdAtString }}</p>
         <IconCalendarEdit></IconCalendarEdit>
         <p class="mx-1 font-normal bold text-gray-700 dark:text-gray-400">{{ updatedAtString }}</p>
       </div>
-      <p class="font-normal text-gray-700 dark:text-gray-400">
-        Price per Hour: {{ pricePerHour }}
-      </p>
-      <div  class="flex flex-wrap items-center mt-5 mb-5">
-        <IconLocation></IconLocation>
-        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          District:        {{ district }}
-        </p>
-        <IconLocation></IconLocation>
-        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Region:         {{ region }}
-        </p>
-        <IconLocation></IconLocation>
-        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Address:         {{ address }}
-        </p>
-      </div>
-    <div>
-      <p class="font-normal text-gray-700 dark:text-gray-400">
-        Phone Number: {{ phoneNumber }}
-      </p>
-      <p class="font-normal text-gray-700 dark:text-gray-400">
-        Status: {{ status }}
-      </p>
-    </div>
-      
+
     </div>
     <div class="flex-none w-16">
       <button type="button"

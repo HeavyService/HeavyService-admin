@@ -10,5 +10,7 @@
     "ru":"Ruscha",
     "uz":"O'zbekcha",
 
-    "create": "Yaratish"
+    "create": "Yaratish",
+    "update": "Yangilash",
+    "delete": "O'chirish"
 }

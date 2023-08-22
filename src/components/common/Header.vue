@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import ThemeSwitch from './ThemeSwitch.vue';
     import LanguageSwitcher from './LanguageSwitcher.vue';
+    import ThemeSwitch from './ThemeSwitch.vue';
 </script>
 
 
@@ -20,8 +20,8 @@
                             </path>
                         </svg>
                     </button>
-                    <a href="https://flowbite.com" class="flex ml-2 md:mr-24">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" />
+                    <a class="flex ml-2 md:mr-24">
+                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="HeavyService Logo" />
                         <span
                             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">HeavyService</span>
                     </a>

@@ -35,13 +35,14 @@
                 </div>
               </div>
               <RouterLink to ="/auth/forget">
-                <div  class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot
+                <div fill="currentColor"  class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forget
                 password?</div>
               </RouterLink>
               
               
             </div>
-            <button type="submit"
+            <button type="button"
+              @click="handleSignIn"
               class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
               Sign in
             </button>
@@ -56,8 +57,10 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
 import { ref } from 'vue';
-
+import { RouterLink, useRouter } from 'vue-router';
+import Cookies from 'js-cookie';
 const email = ref('');
 const password = ref('');
 
@@ -82,5 +85,49 @@ function passwordIsValid(password: string): boolean {
   // Return true if the password is valid, otherwise return false.
   return password.length >= 7 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password) && /[^A-Za-z\d]/.test(password);
 }
+
+
+const router = useRouter();
+async function handleSignIn(event: Event){
+  const userLogin: LoginDto = {
+    email: email.value,
+    password: password.value,
+  };
+
+  interface LoginDto {
+    email: string;
+    password: string;
+  }
+
+  try {
+    const response = await axios.post('http://localhost:5000/api/auth/login', userLogin);
+    
+    if (response.status === 200) {
+      const token = response.data.token;
+      Cookies.set('token', token);
+      console.log('Logged in successfully');
+      router.push('/dashboard');
+    } else {
+      console.error('Login failed');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+  }
+
+
+function saveTokenToCookie(token: string) {
+  document.cookie = `token=${encodeURIComponent(token)}; path=/`; // Customize as needed
+}
+
+
+}
+window.addEventListener('beforeunload', () => {
+  Cookies.remove('token');
+});
+// window.addEventListener('popstate', () => {
+//   Cookies.remove('token');
+// });
+
+
 </script>
 

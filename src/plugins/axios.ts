@@ -1,12 +1,15 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000"//process.env.VUE_APP_BASE_URL // Set your base URL here
+  baseURL: "http://localhost:5000",//process.env.VUE_APP_BASE_URL // Set your base URL here
+  headers:{
+    ['Authorization'] : `Bearer ${Cookies.get("token")}`
+  }
 });
-
 // Interceptors for handling common scenarios
 instance.interceptors.response.use(
-  response => response,
+  response =>response,
   error => {
     if (error.response.status === 401) {
       // Redirect to unauthorized page
@@ -23,5 +26,6 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 
 export default instance;

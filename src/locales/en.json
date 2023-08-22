@@ -10,5 +10,7 @@
     "ru":"Russian",
     "uz":"Uzbek",
 
-    "create": "Create"
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete"
 }
