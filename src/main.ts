@@ -10,7 +10,8 @@ import './index.css'
 import i18n from './locales/i18n'
 
 
-const app = createApp(App)
+const app = createApp(App);
+
 
 app.use(createPinia())
 app.use(router)

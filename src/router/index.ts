@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -12,10 +11,6 @@ const router = createRouter({
         {
           path: "dashboard",
           component: ()=>import("../views/dashboard/Dashboard.vue")
-        },
-        {
-          path: "category",
-          component: ()=>import("../views/category/Category.vue")
         },
         {
           path: "user",

@@ -8,5 +8,7 @@
 
     "en":"English",
     "ru":"Russian",
-    "uz":"Uzbek"
+    "uz":"Uzbek",
+
+    "create": "Create"
 }
