@@ -2,7 +2,7 @@
   <section class="bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-        <img class="w-8 h-8 mr-2" src="../../assets/logo.svg" alt="logo" />
+        <img class="w-8 h-8 mr-2" src="../../assets/logo.jpg" alt="logo" />
         Heavy Service
       </a>
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <RouterLink to ="/auth/forget">
-                <div fill="currentColor"  class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forget
+                <div fill="currentColor"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Forget
                 password?</div>
               </RouterLink>
               
@@ -100,7 +100,7 @@ async function handleSignIn(event: Event){
   }
 
   try {
-    const response = await axios.post('http://localhost:5000/api/auth/login', userLogin);
+    const response = await axios.post('http://95.130.227.191:8080/api/auth/login', userLogin);
     
     if (response.status === 200) {
       const token = response.data.token;
@@ -121,9 +121,9 @@ function saveTokenToCookie(token: string) {
 
 
 }
-window.addEventListener('beforeunload', () => {
-  Cookies.remove('token');
-});
+// window.addEventListener('beforeunload', () => {
+//   Cookies.remove('token');
+// });
 // window.addEventListener('popstate', () => {
 //   Cookies.remove('token');
 // });

@@ -7,8 +7,6 @@ import { formatDate } from "@/helpers/DateHelper";
 import axios from '@/plugins/axios'
 import { defineComponent } from "vue";
 
-
-
 export default defineComponent({
   components: {
     IconEdit,
@@ -44,6 +42,21 @@ export default defineComponent({
       this.createdAtString = formatDate(this.createdAt!);
       this.updatedAtString = formatDate(this.updatedAt!);
     },
+    deleteDate(){
+      console.log(this.id)
+      axios.delete(`${this.baseURL}/api/users/${this.id}`)
+     .then((response) => {
+      if (response.status === 200) {
+        console.log('Deletion was successful.');
+        location.reload();
+      } else {
+        console.log(`Deletion failed with status code: ${response.status}`);
+      }
+    })
+    .catch((error) => {
+      console.error(`An error occurred: ${error.message}`);
+    });
+    },
   },
   mounted() {
     this.load();
@@ -53,9 +66,9 @@ export default defineComponent({
 
 
 <template>
-    <div>
+    <div class="flex">
       <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex justify-end px-4 pt-4">
+        <div class="justify-end px-4 pt-4">
           <button
             id="dropdownButton"
             class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
@@ -76,9 +89,8 @@ export default defineComponent({
           </button>
           <div
             id="dropdown"
-            class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-            v-show="isDropdownVisible"
-          >
+            class="z-10  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+            v-show="isDropdownVisible">
             <ul class="py-2">
               <li>
                 <a
@@ -91,7 +103,7 @@ export default defineComponent({
               <li>
                 <a
                   class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
+                   @click="deleteDate">
                 <IconDelete></IconDelete>
                 {{ $t("delete") }}
                 </a>
@@ -120,7 +132,9 @@ export default defineComponent({
             </p>
           </div>
         </div>
+        
       </div>
+      
     </div>
   </template>
 

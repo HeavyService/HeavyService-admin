@@ -12,5 +12,14 @@
 
     "create": "Yaratish",
     "update": "Yangilash",
-    "delete": "O'chirish"
+    "delete": "O'chirish",
+    "search": "Qidiruv",
+    "cancel": "Bekor qilish",
+    "total": "Jami",
+    "titalInst": "Bu yerda siz hamma asboblarni ko'rishingiz va sozlashingiz mumkin.",
+    "titalTrans": "Bu yerda siz hamma transportlarni ko'rishingiz va sozlashingiz mumkin.",
+    "latest": "Oxrigi foydalanuvchilar",
+    "view": "Barchasini ko'rish"
+
+
 }

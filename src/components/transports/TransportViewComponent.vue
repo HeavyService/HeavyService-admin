@@ -8,6 +8,7 @@ import axios from '@/plugins/axios'
 import { defineComponent } from "vue";
 import IconLocation from "../icons/interface/IconLocation.vue";
 import IconPhone from "../icons/interface/IconPhone.vue";
+import router from "@/router";
 
 export default defineComponent({
   components: {
@@ -49,6 +50,20 @@ export default defineComponent({
       this.createdAtString = formatDate(this.createdAt!);
       this.updatedAtString = formatDate(this.updatedAt!);
     },
+    deleteDate(){
+      axios.delete(`${this.baseURL}/api/transports/${this.id}`)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log('Deletion was successful.');
+        location.reload();
+      } else {
+        console.log(`Deletion failed with status code: ${response.status}`);
+      }
+    })
+    .catch((error) => {
+      console.error(`An error occurred: ${error.message}`);
+    });
+    }
   },
   mounted() {
     this.load();
@@ -59,7 +74,8 @@ export default defineComponent({
 <template>
   <div class="card flex border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <div class="flex-none w-64">
-      <img style="height: 100%; width: 100%; object-fit: cover;" class="rounded-lg" src="{{ imageFullPath }}" />
+      <img style="height: 100%; width: 100%; object-fit: cover;" class="rounded-lg"
+            v-bind:src="imageFullPath"/>
     </div>
 
     <div class="flex-auto p-4">
@@ -68,27 +84,27 @@ export default defineComponent({
       <div class="flex flex-wrap items-center mt-5 mb-5">
         <IconLocation></IconLocation>
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          District: {{ district }}
+          {{ district }}
         </p>
         <IconLocation></IconLocation>
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Region: {{ region }}
+          {{ region }}
         </p>
         <IconLocation></IconLocation>
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Address: {{ address }}
+          {{ address }}
         </p>
       </div>
       <div class="flex flex-wrap items-center mt-5 mb-5">
         <IconPhone></IconPhone>
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Phone Number: {{ phoneNumber }}
+          {{ phoneNumber }}
         </p>
+        <!-- <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
+          {{ status }}
+        </p> -->
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Status:  {{ status }}
-        </p>
-        <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          Priceper Hour:  {{ pricePerHour }}
+          {{ pricePerHour }} - Hour
         </p>
       </div>
       <div class="flex flex-wrap items-center mt-5 mb-5">
@@ -104,8 +120,8 @@ export default defineComponent({
         class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         <IconEdit></IconEdit>
       </button>
-      <button type="button"
-        class="mt-5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+      <button type="button" @click="deleteDate" 
+         class="mt-5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
         <IconDelete></IconDelete>
       </button>
     </div>
