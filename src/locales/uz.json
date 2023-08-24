@@ -19,7 +19,28 @@
     "titalInst": "Bu yerda siz hamma asboblarni ko'rishingiz va sozlashingiz mumkin.",
     "titalTrans": "Bu yerda siz hamma transportlarni ko'rishingiz va sozlashingiz mumkin.",
     "latest": "Oxrigi foydalanuvchilar",
-    "view": "Barchasini ko'rish"
+    "view": "Barchasini ko'rish",
+    "name": "Ism",
+    "image": "Rasm",
+    "pricePerHours": "Soatiga narx",
+    "district": "Tuman",
+    "region": "Mintaqa",
+    "address": "Manzil",
+    "status": "Holat",
+    "empty": "Bo'sh",
+    "rent": "Ijarada",
+    "phone": "Telefon raqami",
+    "description": "Tavsif",
+    "pricePerDay": "Bir kunlik narx"
+
+
+
+
+
+
+
+
+
 
 
 }

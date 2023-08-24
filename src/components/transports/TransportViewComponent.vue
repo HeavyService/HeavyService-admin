@@ -100,9 +100,6 @@ export default defineComponent({
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
           {{ phoneNumber }}
         </p>
-        <!-- <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
-          {{ status }}
-        </p> -->
         <p class="me-5 mx-1 font-normal bold text-gray-700 dark:text-gray-400">
           {{ pricePerHour }} - Hour
         </p>

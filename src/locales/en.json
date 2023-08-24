@@ -19,6 +19,19 @@
     "titalInst": "Here you can see all transports and customize them.",
     "titalTrans":"Here you can see all transports and customize them.",
     "latest": "Lastest users",
-    "view": "View all"
+    "view": "View all",
+    "name": "Name",
+    "image": "Image",
+    "pricePerHours": "Price per hours",
+    "district": "District",
+    "region": "Region",
+    "address": "Address",
+    "status": "Status",
+    "empty": "Empty",
+    "rent": "On rent",
+    "phone": "Phone Number",
+    "description": "Description",
+    "pricePerDay": "Price per day"
+
     
 }
