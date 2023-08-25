@@ -79,17 +79,10 @@ export default defineComponent({
     
   </ol>
   </nav>
-  <div class="flex justify-between mt-5 flex items-center">
-    <button type="button" @click="openCreateModal" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-          <div class="flex items-center">
-            <IconCreate />
-            <p class="mx-2">{{ $t("create") }}</p>
-          </div>
-        </button>
-      <TransportCommentCreate v-if="isCreateModalOpen" @close="closeCreateModal" />
+  
 
     
-  </div>
+
   <ul v-show="isLoaded === false">
       <template v-for="element in defaultSkeletons">
         <TransportCommentSkeletonComponent class="mt-2 mb-3" />
@@ -106,7 +99,7 @@ export default defineComponent({
                 :comment="element.comment"
                 :createdAt="element.createdAt"
                 :updatedAt="element.updatedAt"
-                class="mt-2 mb-3"
+                class="mt-16 mb-12"
             />
         </template>
       </ul>

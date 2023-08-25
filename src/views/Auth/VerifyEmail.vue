@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-gray-50 dark:bg-gray-900">
+    <!-- <section class="bg-gray-50 dark:bg-gray-900">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <img class="w-8 h-8 mr-2" src="../../assets/logo.svg" alt="logo" />
@@ -34,25 +34,25 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   </template>
   
   <script setup lang="ts">
-  import { ref } from 'vue';
+  // import { ref } from 'vue';
   
-  const verificationCode = ref('');
+  // const verificationCode = ref('');
   
-  function verifyCode() {
-    // Implement your verification code logic here
-    // For example, you can check if the entered code matches the expected code.
-    if (verificationCode.value === '123456') {
-      // Code matches, navigate to the next page or perform desired action
-      alert('Verification successful!'); // Replace with your logic
-    } else {
-      // Code does not match, show an error message or perform desired action
-      alert('Invalid verification code.'); // Replace with your logic
-    }
-  }
+  // function verifyCode() {
+  //   // Implement your verification code logic here
+  //   // For example, you can check if the entered code matches the expected code.
+  //   if (verificationCode.value === '123456') {
+  //     // Code matches, navigate to the next page or perform desired action
+  //     alert('Verification successful!'); // Replace with your logic
+  //   } else {
+  //     // Code does not match, show an error message or perform desired action
+  //     alert('Invalid verification code.'); // Replace with your logic
+  //   }
+  // }
   </script>
   
   <style>

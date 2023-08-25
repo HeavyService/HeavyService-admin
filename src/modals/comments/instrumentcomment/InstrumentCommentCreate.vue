@@ -25,8 +25,8 @@
   <script lang="ts">
  import axios from '@/plugins/axios';
  import { InstrumentCommentCreateDto } from '../../../dtos/comments/instrumentcomments/instrumentcomments'; // Adjust the import path
-  import { useI18n } from 'vue-i18n';
-import { InstrumentCommentViewModel } from '@/viewmodels/InstrumentCommentViewModel';
+ import { useI18n } from 'vue-i18n';
+ import { InstrumentCommentViewModel } from '@/viewmodels/InstrumentCommentViewModel';
 
 export default {
   name: 'InstrumentCommentCreateDto',

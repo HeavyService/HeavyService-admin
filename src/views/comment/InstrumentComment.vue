@@ -25,21 +25,12 @@ export default defineComponent({
       this.instrumentList = response.data;
       console.log(this.instrumentList);
     },
-    openCreateModal() {
-      debugger;
-      this.isCreateModalOpen = true;
-    },
-    closeCreateModal() {
-      this.isCreateModalOpen = false;
-      location.reload();
-    },
   },
   data() {
     return {
       instrumentList: [] as InstrumentCommentViewModel[],
       defaultSkeletons: 4 as Number,
       isLoaded: false as Boolean,
-      isCreateModalOpen: false,
     }
   },
   setup(){
@@ -79,24 +70,13 @@ export default defineComponent({
     
   </ol>
   </nav>
-  <div class="flex justify-between mt-5 flex items-center">
-    <button type="button" @click="openCreateModal" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-          <div class="flex items-center">
-            <IconCreate />
-            <p class="mx-2">{{ $t("create") }}</p>
-          </div>
-        </button>
-      <InstrumentCommentCreateModal v-if="isCreateModalOpen" @close="closeCreateModal" />
-
-    
-  </div>
   <ul v-show="isLoaded === false">
       <template v-for="element in defaultSkeletons">
         <InstrumentCommentSkeletonComponent class="mt-2 mb-3" />
       </template>
     </ul>
 
-    <ul v-show="isLoaded === true">
+    <div  v-show="isLoaded === true">
         <template v-for="element in instrumentList">
             <InstrumentCommentViewComponent
                 :id="element.id"
@@ -106,10 +86,10 @@ export default defineComponent({
                 :comment="element.comment"
                 :createdAt="element.createdAt"
                 :updatedAt="element.updatedAt"
-                class="mt-2 mb-3"
+                class="mt-16 mb-12"
             />
         </template>
-      </ul>
+      </div>
 
 
     <div id="div-gpt-ad-listing-sponsored-ad-first" class="baxter-container" data-testid="qa-advert-slot">
