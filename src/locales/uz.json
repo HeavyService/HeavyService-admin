@@ -31,11 +31,10 @@
     "rent": "Ijarada",
     "phone": "Telefon raqami",
     "description": "Tavsif",
-    "pricePerDay": "Bir kunlik narx"
+    "pricePerDay": "Bir kunlik narx",
 
-
-
-
+    "previous": "Oldingi",
+    "next": "Keyingi"
 
 
 

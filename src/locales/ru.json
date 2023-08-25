@@ -31,7 +31,11 @@
     "rent": "В аренду",
     "phone": "Номер телефона",
     "description": "Описание",
-    "pricePerDay": "Цена за день"
+    "pricePerDay": "Цена за день",
+
+
+    "previous": "Назад",
+    "next": "След"
 
 
 

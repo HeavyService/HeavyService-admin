@@ -8,6 +8,7 @@ import axios from '@/plugins/axios';
 import { useI18n } from 'vue-i18n';
 import IconHome from '@/components/icons/IconHome.vue';
 import { InstrumentCreateDto } from '../../dtos/instruments/InstrumentCreateDto'; 
+import { PaginationMetaData } from '@/utils/PaginationUtils';
 
 export default defineComponent({
   components: {
@@ -21,6 +22,11 @@ export default defineComponent({
       this.isLoaded = false;
       try {
         const response = await axios.get<InstrumentViewModel[]>("/api/instruments");
+        var paginationJson = JSON.parse(response.headers["x-pagination"]);
+        this.metaData = new PaginationMetaData();
+        this.metaData.totalPages = paginationJson.TotalPages;
+        this.metaData.hasNext = paginationJson.HasNext;
+        this.metaData.hasPrevious = paginationJson.HasPrevious;
         this.instrumentList = response.data;
       } catch (error) {
         console.error('An error occurred:', error);
@@ -81,7 +87,9 @@ export default defineComponent({
       isLoaded: false as boolean,
       isCreateModalOpen: false,
       searchQuery: '', // Added property to store the search query
-      formData: new InstrumentCreateDto()
+      formData: new InstrumentCreateDto(),
+      metaData: {} as PaginationMetaData,
+      isBigPagination: false as boolean,
     };
   },
   setup() {
@@ -256,6 +264,26 @@ export default defineComponent({
         </template>
       </ul>
   
+      <nav aria-label="Page navigation example">
+  <ul class="inline-flex -space-x-px text-sm">
+    <li v-show="metaData.hasPrevious=true">
+      <a href="#" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        {{ $t("previous") }}
+      </a>
+    </li>
+      <li v-for="el in metaData.totalPages">
+        <button @click="getDataAsync(el)" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+          {{ el }}
+        </button>
+      </li>
+    <li v-show="metaData.hasNext=true">
+      <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        {{ $t("next") }}
+
+      </a>
+    </li>
+  </ul>
+</nav>
       <!-- Sponsored Ad Section -->
       <div id="div-gpt-ad-listing-sponsored-ad-first" class="baxter-container" data-testid="qa-advert-slot">
         <div id="div-gpt-ad-listing-sponsored-ad-first-inner" class="baxter-inner baxter-1800337551">

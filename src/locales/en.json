@@ -31,7 +31,11 @@
     "rent": "On rent",
     "phone": "Phone Number",
     "description": "Description",
-    "pricePerDay": "Price per day"
+    "pricePerDay": "Price per day",
+
+    "previous": "Previous",
+    "next": "Next"
 
     
+
 }
